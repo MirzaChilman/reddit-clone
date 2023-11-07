@@ -1,40 +1,33 @@
-import { HomeIcon } from "@radix-ui/react-icons";
 import {
   Tooltip,
   TooltipTrigger,
   TooltipContent,
-  TooltipProvider,
 } from "@radix-ui/react-tooltip";
 import { MessageCircle, Plus, Bell, User2Icon } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 
 const _NavigationsRight = [
   {
     label: "Message",
-    icon: "",
-    assets: <MessageCircle color="hsl(var(--secondary))" />,
+    assets: <MessageCircle />,
     url: "/",
     tooltip: true,
   },
   {
     label: "Notifications",
-    icon: "",
-    assets: <Bell color="hsl(var(--secondary))" />,
+    assets: <Bell />,
     url: "/",
     tooltip: true,
   },
   {
     label: "Create post",
-    icon: "",
-    assets: <Plus color="hsl(var(--secondary))" />,
+    assets: <Plus />,
     url: "/",
     tooltip: true,
   },
   {
     label: "Account",
-    icon: "",
-    assets: <User2Icon color="hsl(var(--secondary))" />,
+    assets: <User2Icon />,
     url: "/",
     tooltip: true,
   },
@@ -42,24 +35,19 @@ const _NavigationsRight = [
 
 export const NavbarRight = () => {
   return (
-    <section className="flex-3 self-center">
+    <section className="flex-3 mt-1 flex items-center gap-2">
       {_NavigationsRight.map(({ label, icon, url, assets, tooltip }, index) => {
         return (
-          <Link key={index} href={url} className="mx-2">
+          <Link key={index} href={url} className="mx-1">
             <Tooltip>
               <TooltipTrigger>
                 <div className="flex items-center gap-1">
                   {assets && assets}
-                  {icon && (
-                    <Image src={icon} height={24} width={24} alt="reddit" />
-                  )}
-                  {label && !tooltip && (
-                    <p className="text-secondary">{label}</p>
-                  )}
+                  {label && !tooltip && <p>{label}</p>}
                 </div>
               </TooltipTrigger>
               {tooltip && label && (
-                <TooltipContent className="rounded-xl bg-primary p-2 text-sm text-secondary">
+                <TooltipContent className="rounded-xl bg-primary p-2 text-sm">
                   {label}
                 </TooltipContent>
               )}

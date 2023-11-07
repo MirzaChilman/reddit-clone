@@ -1,7 +1,15 @@
-export default async function Home() {
+"use client";
+
+import { Card, CardContent } from "@/components/ui/card";
+import { useTheme } from "next-themes";
+
+export default function Home() {
+  const { setTheme } = useTheme();
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      test
+    <main className="p-5">
+      <Card>
+        <CardContent>test</CardContent>
+      </Card>
     </main>
   );
 }

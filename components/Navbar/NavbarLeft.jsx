@@ -3,16 +3,13 @@ import {
   Tooltip,
   TooltipTrigger,
   TooltipContent,
-  TooltipProvider,
 } from "@radix-ui/react-tooltip";
-import Image from "next/image";
 import Link from "next/link";
 
 const _NavigationsLeft = [
   {
     label: "Home",
-    icon: "",
-    assets: <HomeIcon color="hsl(var(--secondary))" />,
+    assets: <HomeIcon />,
     url: "/",
     tooltip: false,
   },
@@ -28,17 +25,11 @@ export const NavbarLeft = () => {
               <TooltipTrigger>
                 <div className="flex items-center gap-1">
                   {assets && assets}
-                  {icon && (
-                    <Image src={icon} height={24} width={24} alt="reddit" />
-                  )}
-                  {label && !tooltip && (
-                    <p className="text-secondary">{label}</p>
-                  )}
+
+                  {label && !tooltip && <p>{label}</p>}
                 </div>
               </TooltipTrigger>
-              {tooltip && label && (
-                <TooltipContent className="bg-red-500">{label}</TooltipContent>
-              )}
+              {tooltip && label && <TooltipContent>{label}</TooltipContent>}
             </Tooltip>
           </Link>
         );

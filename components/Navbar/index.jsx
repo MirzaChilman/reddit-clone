@@ -9,7 +9,7 @@ import { NavbarCenter } from "./NavbarSearch";
 
 export function Navbar() {
   return (
-    <nav className="bg-primary p-2">
+    <nav className="p-2 shadow-md">
       <TooltipProvider>
         <div className="flex gap-10">
           <section>
