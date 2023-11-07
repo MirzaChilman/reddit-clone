@@ -47,7 +47,7 @@ export const NavbarRight = () => {
                 </div>
               </TooltipTrigger>
               {tooltip && label && (
-                <TooltipContent className="rounded-xl bg-primary p-2 text-sm">
+                <TooltipContent className="rounded-xl bg-background p-2 text-sm">
                   {label}
                 </TooltipContent>
               )}
