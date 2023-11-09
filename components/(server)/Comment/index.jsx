@@ -25,9 +25,8 @@ export const Comment = ({
   onReport,
 }) => {
   return (
-    <Card className="card relative my-2 px-1 py-2">
-      {/* <div className="absolute left-[18px]  w-2 border-l-2" /> */}
-      <header className="flex items-center gap-2">
+    <section className="card flex gap-2 px-1 py-2">
+      <aside>
         <Avatar className="h-8 w-8">
           <AvatarImage src="https://github.com/shasdcn.png" alt="@shadcn" />
           <AvatarFallback>
@@ -35,25 +34,30 @@ export const Comment = ({
             {username[1]}
           </AvatarFallback>
         </Avatar>
-        <p>
-          {username} - <span className="text-sm">{time}</span>
-        </p>
-      </header>
-      <article className="ml-4 pl-[25px]">
-        <p>{content}</p>
-      </article>
-      <footer className="ml-12 flex gap-1">
-        <div className="flex items-center gap-1">
-          <ArrowBigUp size={24} className="hover:bg-secondary" />
-          <small>{upvotes - downvotes}</small>
-          <ArrowBigDown size={24} className="hover:bg-secondary" />
-        </div>
+      </aside>
+      <Card className="flex-1 p-2">
+        <header>
+          <p>
+            {username} - <span className="text-sm">{time}</span>
+          </p>
+        </header>
+        <article>
+          <p>{content}</p>
+        </article>
+        <footer className="flex gap-1">
+          <div className="flex items-center gap-1">
+            <ArrowBigUp size={24} className="hover:bg-secondary" />
+            <small>{upvotes - downvotes}</small>
+            <ArrowBigDown size={24} className="hover:bg-secondary" />
+          </div>
 
-        <div className="flex cursor-pointer items-center gap-1 hover:bg-secondary">
-          <MessageSquare size={20} />
-          <p>Reply</p>
-        </div>
-      </footer>
-    </Card>
+          <div className="flex cursor-pointer items-center gap-1 hover:bg-secondary">
+            <MessageSquare size={20} />
+            <p>Reply</p>
+          </div>
+        </footer>
+      </Card>
+      {/* <div className="absolute left-[18px]  w-2 border-l-2" /> */}
+    </section>
   );
 };

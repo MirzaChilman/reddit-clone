@@ -1,4 +1,3 @@
-import { Comment } from "@/components/(server)/Comment";
 import CommentWithReplies from "@/components/(server)/Comment/WithReplies";
 import { Button } from "@/components/ui/button";
 import {
