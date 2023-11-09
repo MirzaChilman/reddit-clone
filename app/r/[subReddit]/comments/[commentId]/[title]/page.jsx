@@ -1,4 +1,5 @@
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { Comment } from "@/components/(server)/Comment";
+import CommentWithReplies from "@/components/(server)/Comment/WithReplies";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -10,13 +11,86 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { MessageSquare, Forward, ArrowBigUp, ArrowBigDown } from "lucide-react";
 
+const mock = [
+  {
+    id: 1,
+    username: "User123",
+    time: "2 hours ago",
+    content: "Really insightful post, thanks for sharing!",
+    upvotes: 23,
+    downvotes: 0,
+    replies: [
+      {
+        id: 3,
+        username: "Commentator",
+        time: "1 hour ago",
+        content: "I agree, it was a great read.",
+        upvotes: 15,
+        downvotes: 0,
+        replies: [
+          {
+            id: 6,
+            username: "User456",
+            time: "30 minutes ago",
+            content: "Yes, it was very informative!",
+            upvotes: 8,
+            downvotes: 0,
+          },
+        ],
+      },
+      {
+        id: 7,
+        username: "AnotherCommentator",
+        time: "45 minutes ago",
+        content: "I found this interesting too!",
+        upvotes: 10,
+        downvotes: 0,
+      },
+    ],
+  },
+  {
+    id: 2,
+    username: "JaneDoe",
+    time: "3 hours ago",
+    content: "This is a great example of a comment section in React.",
+    upvotes: 40,
+    downvotes: 2,
+    replies: [
+      {
+        id: 8,
+        username: "User789",
+        time: "2 hours ago",
+        content: "Indeed, it's well-organized!",
+        upvotes: 12,
+        downvotes: 0,
+      },
+    ],
+  },
+  {
+    id: 4,
+    username: "TechGuru",
+    time: "4 hours ago",
+    content:
+      "Has anyone considered the implications of this approach on performance?",
+    upvotes: 5,
+    downvotes: 1,
+    replies: [],
+  },
+];
+
 const SubRedditCommentsPage = () => {
   return (
-    <Card className="my-3 flex cursor-pointer gap-1 px-3 py-1 hover:border-primary">
+    <Card className="my-3 flex gap-1 px-3 py-1 hover:border-primary">
       <section>
-        <ArrowBigUp color="gray" className="cursor-pointer" />
+        <ArrowBigUp
+          color="gray"
+          className="cursor-pointer hover:bg-secondary"
+        />
         <p>53</p>
-        <ArrowBigDown color="gray" className="cursor-pointer" />
+        <ArrowBigDown
+          color="gray"
+          className="cursor-pointer hover:bg-secondary"
+        />
       </section>
       <section>
         <CardSmall>
@@ -57,18 +131,9 @@ const SubRedditCommentsPage = () => {
           </Button>
         </div>
 
-        <div>
-          <div className="flex items-center gap-2">
-            <Avatar>
-              <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-              <AvatarFallback>CN</AvatarFallback>
-            </Avatar>
-            <p>
-              Username - <span className="text-sm">3 yr ago</span>
-            </p>
-          </div>
-          <div></div>
-        </div>
+        {mock.map((comment) => (
+          <CommentWithReplies key={comment.id} comment={comment} />
+        ))}
       </section>
     </Card>
   );

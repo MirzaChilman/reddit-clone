@@ -1,7 +1,7 @@
 "use client";
 
-import { CardFiltering } from "./components/(server)/Actions/CardFiltering";
-import { ContentIndex } from "./components/(server)/Content";
+import { CardFiltering } from "../components/(server)/Actions/CardFiltering";
+import { ContentIndex } from "../components/(server)/Content";
 
 export default function Home() {
   return (
