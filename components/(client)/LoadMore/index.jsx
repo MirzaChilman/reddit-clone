@@ -1,24 +1,73 @@
 "use client";
+import { fetchPosts } from "@/app/actions/fetchPosts";
+import { ContentIndex } from "@/components/(server)/Content";
 import { Spinner } from "@/components/(server)/Spinner";
-import { useEffect, useState } from "react";
+import { useToast } from "@/components/ui/use-toast";
+import { useCallback, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 
 export const LoadMore = () => {
+  const [posts, setPosts] = useState([]);
+  const { toast } = useToast();
+  const [pagesLoaded, setPagesLoaded] = useState(0);
+  const [count, setCount] = useState(0);
   const { ref, inView } = useInView({
     threshold: 0,
   });
   const [show, setShow] = useState(false);
+
+  const loadMorePosts = useCallback(async () => {
+    const nextPage = pagesLoaded + 1;
+    try {
+      const newPosts = (await fetchPosts({ page: nextPage })) ?? [];
+      setPosts((prev) => [...prev, ...newPosts.data]);
+      setPagesLoaded(nextPage);
+    } catch {
+      toast({
+        title: "Something went error load more",
+      });
+    } finally {
+      setShow(false);
+    }
+  }, [pagesLoaded, toast]);
+
   useEffect(() => {
     if (inView) {
-      setTimeout(() => {
-        setShow(true);
-      }, [2000]);
+      setShow(true);
+      loadMorePosts();
     }
-  }, [inView]);
+  }, [inView, loadMorePosts]);
 
+  console.log({ posts });
   return (
-    <div className="flex justify-center" ref={ref}>
-      {show && <Spinner />}
-    </div>
+    <>
+      {posts.data?.map((post) => {
+        const {
+          title,
+          votes,
+          subreddit,
+          createdAt,
+          comments,
+          author,
+          content,
+        } = post;
+        return (
+          <ContentIndex
+            key={post.id}
+            title={title}
+            votes={votes}
+            subReddit={subreddit}
+            createdAt={createdAt}
+            comments={comments}
+            author={author}
+            content={content}
+          />
+        );
+      })}
+      {posts.length}
+      <div className="flex justify-center" ref={ref}>
+        {show && <Spinner />}
+      </div>
+    </>
   );
 };
