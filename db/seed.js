@@ -93,7 +93,7 @@ function generateMockPosts(users, subreddits, count) {
       users,
       Math.floor(Math.random() * 10)
     ); // Generate up to 10 comments per post
-    const votes = Math.floor(Math.random() * 1000) - 500; // Generate a number between -500 and 500 for votes
+    const votes = Math.floor(Math.random() * 199) - 99; // Generate a number between -500 and 500 for votes
 
     const post = {
       id: i,
