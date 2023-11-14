@@ -28,7 +28,7 @@ const _NavigationsRight = [
   {
     label: "Account",
     assets: <User2Icon />,
-    url: "/",
+    url: "/login",
     tooltip: true,
   },
 ];

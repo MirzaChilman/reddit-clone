@@ -1,6 +1,4 @@
-"use client";
-
-import { CardFiltering } from "../components/(server)/Actions/CardFiltering";
+import { CardFiltering } from "../components/(client)/Actions/CardFiltering";
 import { ContentIndex } from "../components/(server)/Content";
 
 export default function Home() {

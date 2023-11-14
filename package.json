@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "seed": "node seed.js",
+    "server": "json-server --watch db/db.json --port 8080"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.0.4",
@@ -19,8 +21,11 @@
     "@radix-ui/react-tabs": "^1.0.4",
     "@radix-ui/react-toast": "^1.1.5",
     "@radix-ui/react-tooltip": "^1.0.7",
+    "@tanstack/react-query": "^5.8.3",
+    "@tanstack/react-query-devtools": "^5.8.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
+    "json-server": "^0.17.4",
     "lucide-react": "^0.292.0",
     "next": "14.0.1",
     "next-themes": "^0.2.1",
@@ -30,6 +35,7 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.2.0",
     "@types/node": "20.9.0",
     "@types/react": "18.2.37",
     "autoprefixer": "^10.0.1",
