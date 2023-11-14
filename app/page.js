@@ -8,8 +8,7 @@ export default async function Home() {
   return (
     <main className="p-5">
       <CardFiltering />
-      adasd
-      {/* {results?.map((result) => {
+      {results.data?.map((result) => {
         const {
           title,
           votes,
@@ -33,7 +32,7 @@ export default async function Home() {
         );
       })}
 
-      <LoadMore /> */}
+      <LoadMore />
       {/* <button onClick={() => setTheme("light")}>light</button> */}
     </main>
   );

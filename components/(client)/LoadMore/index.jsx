@@ -10,7 +10,7 @@ export const LoadMore = () => {
   const [posts, setPosts] = useState([]);
   const { toast } = useToast();
   const [pagesLoaded, setPagesLoaded] = useState(0);
-  const [count, setCount] = useState(0);
+  const [allPostsLoaded, setAllPostsLoaded] = useState(false);
   const { ref, inView } = useInView({
     threshold: 0,
   });
@@ -20,6 +20,10 @@ export const LoadMore = () => {
     const nextPage = pagesLoaded + 1;
     try {
       const newPosts = (await fetchPosts({ page: nextPage })) ?? [];
+      if (newPosts.data.length === 0) {
+        setAllPostsLoaded(true);
+        return;
+      }
       setPosts((prev) => [...prev, ...newPosts.data]);
       setPagesLoaded(nextPage);
     } catch {
@@ -34,14 +38,15 @@ export const LoadMore = () => {
   useEffect(() => {
     if (inView) {
       setShow(true);
-      loadMorePosts();
+      setTimeout(() => {
+        loadMorePosts();
+      }, 2000);
     }
   }, [inView, loadMorePosts]);
 
-  console.log({ posts });
   return (
     <>
-      {posts.data?.map((post) => {
+      {posts?.map((post) => {
         const {
           title,
           votes,
@@ -64,9 +69,8 @@ export const LoadMore = () => {
           />
         );
       })}
-      {posts.length}
       <div className="flex justify-center" ref={ref}>
-        {show && <Spinner />}
+        {show && !allPostsLoaded && <Spinner />}
       </div>
     </>
   );

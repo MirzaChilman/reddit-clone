@@ -57,7 +57,7 @@ function generateMockComments(users, depth = 0) {
   const comments = [];
 
   // Limit the depth of nested comments
-  if (depth > 2) {
+  if (depth > 3) {
     return comments;
   }
 
@@ -116,7 +116,7 @@ function generateMockPosts(users, subreddits, count) {
 // Generate mock data
 const users = generateMockUsers(50); // Generate 50 users
 const subreddits = generateMockSubreddits(); // Generate specific subreddits
-const posts = generateMockPosts(users, subreddits, 10); // Generate 100 posts
+const posts = generateMockPosts(users, subreddits, 100); // Generate 100 posts
 
 // Combine data into a single object
 const redditMockData = {
