@@ -17,10 +17,12 @@ export default async function Home() {
           comments,
           author,
           content,
+          id,
         } = result;
         return (
           <ContentIndex
-            key={result.id}
+            key={id}
+            id={id}
             title={title}
             votes={votes}
             subReddit={subreddit}

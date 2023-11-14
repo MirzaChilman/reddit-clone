@@ -55,10 +55,12 @@ export const LoadMore = () => {
           comments,
           author,
           content,
+          id,
         } = post;
         return (
           <ContentIndex
-            key={post.id}
+            key={id}
+            id={id}
             title={title}
             votes={votes}
             subReddit={subreddit}

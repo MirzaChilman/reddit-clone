@@ -6,6 +6,7 @@ import {
   CardSmall,
   CardTitle,
 } from "@/components/ui/card";
+import { formatUrlTitle } from "@/helpers/formatUrlTitle";
 import { MessageSquare, Forward, ArrowBigUp, ArrowBigDown } from "lucide-react";
 import Link from "next/link";
 
@@ -17,9 +18,11 @@ export const ContentIndex = ({
   comments,
   author,
   content,
+  id,
 }) => {
+  const formattedTitle = formatUrlTitle(title);
   return (
-    <Link href="/r/reactJs/comments/asdasd/adasd">
+    <Link href={`${subReddit}/comments/${id}/${formattedTitle}`}>
       <Card className="my-3 flex cursor-pointer gap-1 px-3 py-1 hover:border-primary">
         <section>
           <ArrowBigUp color="gray" className="cursor-pointer" />
