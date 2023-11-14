@@ -6,6 +6,7 @@ import {
   CardSmall,
   CardTitle,
 } from "@/components/ui/card";
+import { displayDate } from "@/helpers/displayDate";
 import { formatUrlTitle } from "@/helpers/formatUrlTitle";
 import { MessageSquare, Forward, ArrowBigUp, ArrowBigDown } from "lucide-react";
 import Link from "next/link";
@@ -35,7 +36,7 @@ export const ContentIndex = ({
               <p className="font-bold">{subReddit}</p>
               <span>-</span>
               <span className="text-gray-700">
-                Posted by u/{author} ${createdAt}
+                Posted by u/{author} {displayDate(createdAt)}
               </span>
             </div>
           </CardSmall>
