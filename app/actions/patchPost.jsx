@@ -1,8 +1,8 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 
-export const patchPost = async ({ id, votes }) => {
+export const patchPost = async ({ id, votes } = {}) => {
   let data;
   try {
     const res = await fetch(`http://localhost:8080/posts/${id}`, {
@@ -13,10 +13,10 @@ export const patchPost = async ({ id, votes }) => {
       body: JSON.stringify({
         votes: votes,
       }),
+      cache: "no-store",
     });
 
     data = await res.json();
-    revalidatePath("/", "page");
   } catch {
     console.error("Failed to patch post");
   }

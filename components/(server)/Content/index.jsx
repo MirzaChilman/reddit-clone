@@ -1,5 +1,5 @@
 "use client";
-import { patchPost } from "@/app/actions/patchPost";
+import { VotesAction } from "@/components/(client)/Votes/Votes";
 import {
   Card,
   CardContent,
@@ -11,7 +11,6 @@ import { displayDate } from "@/helpers/displayDate";
 import { formatUrlTitle } from "@/helpers/formatUrlTitle";
 import { MessageSquare, Forward, ArrowBigUp, ArrowBigDown } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 export const ContentIndex = ({
   title,
@@ -24,27 +23,9 @@ export const ContentIndex = ({
   totalCommentsAndReplies,
 }) => {
   const formattedTitle = formatUrlTitle(title);
-  const router = useRouter();
   return (
     <Card className="my-3 flex cursor-pointer gap-1 px-3 py-1 hover:border-primary">
-      <section>
-        <ArrowBigUp
-          color="gray"
-          className="cursor-pointer hover:bg-secondary"
-          onClick={async () => {
-            await patchPost({ id, votes: votes + 1 });
-          }}
-        />
-        <p>{votes}</p>
-        <ArrowBigDown
-          onClick={async () => {
-            console.log({ votes });
-            await patchPost({ id, votes: votes - 1 });
-          }}
-          color="gray"
-          className="cursor-pointer hover:bg-secondary"
-        />
-      </section>
+      <VotesAction id={id} votes={votes} />
       <section>
         <CardSmall>
           <div className="flex gap-1">

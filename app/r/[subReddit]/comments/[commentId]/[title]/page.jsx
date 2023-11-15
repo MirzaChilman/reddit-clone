@@ -10,7 +10,8 @@ import {
 } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { displayDate } from "@/helpers/displayDate";
-import { MessageSquare, Forward, ArrowBigUp, ArrowBigDown } from "lucide-react";
+import { MessageSquare, Forward } from "lucide-react";
+import { VotesAction } from "../../../../../../components/(client)/Votes/Votes";
 
 const SubRedditCommentsPage = async ({ params }) => {
   const postId = params.commentId;
@@ -27,17 +28,7 @@ const SubRedditCommentsPage = async ({ params }) => {
   } = res.data;
   return (
     <Card className="my-3 flex gap-1 px-3 py-1 hover:border-primary">
-      <section>
-        <ArrowBigUp
-          color="gray"
-          className="cursor-pointer hover:bg-secondary"
-        />
-        <p>{votes}</p>
-        <ArrowBigDown
-          color="gray"
-          className="cursor-pointer hover:bg-secondary"
-        />
-      </section>
+      <VotesAction id={postId} votes={votes} />
       <section>
         <CardSmall>
           <div className="flex gap-1">

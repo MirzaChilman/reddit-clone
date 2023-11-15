@@ -39,7 +39,7 @@ export const LoadMore = () => {
     } finally {
       setShow(false);
     }
-  }, [pagesLoaded, toast]);
+  }, [pagesLoaded, searchParams, toast]);
 
   useEffect(() => {
     if (inView) {
