@@ -27,7 +27,7 @@ const SubRedditCommentsPage = async ({ params }) => {
     totalCommentsAndReplies,
   } = res.data;
   return (
-    <Card className="my-3 flex gap-1 px-3 py-1 hover:border-primary">
+    <Card className="mx-4 my-5  flex gap-1 px-3 py-1 ">
       <VotesAction id={postId} votes={votes} />
       <section>
         <CardSmall>

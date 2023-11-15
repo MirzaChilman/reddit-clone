@@ -38,12 +38,6 @@ export const Comment = (props) => {
           <p>{content}</p>
         </article>
         <footer className="flex gap-1">
-          <div className="flex items-center gap-1">
-            <ArrowBigUp size={24} className="hover:bg-secondary" />
-            <small>{votes}</small>
-            <ArrowBigDown size={24} className="hover:bg-secondary" />
-          </div>
-
           <div className="flex cursor-pointer items-center gap-1 hover:bg-secondary">
             <MessageSquare size={20} />
             <p>Reply</p>
