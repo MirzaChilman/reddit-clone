@@ -1,7 +1,7 @@
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Card } from "@/components/ui/card";
 import { displayDate } from "@/helpers/displayDate";
-import { ArrowBigUp, ArrowBigDown, MessageSquare } from "lucide-react";
+import { MessageSquare } from "lucide-react";
 
 export const Comment = (props) => {
   const { author, content, createdAt } = props;

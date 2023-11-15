@@ -1,11 +1,7 @@
 "use client";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { TabsTrigger } from "@/components/ui/tabs";
 
 import { RocketIcon, FlameIcon, BadgePlus, SunriseIcon } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { setLayout } from "@/app/actions/setLayout";
-import { useCookies } from "next-client-cookies";
-import { LayoutActions } from "./LayoutActions";
 
 const Options = [
   { label: "Best", value: "best", icon: <RocketIcon /> },
@@ -15,8 +11,6 @@ const Options = [
 ];
 
 export const FilteringActions = () => {
-  const router = useRouter();
-  const cookieStore = useCookies();
   return (
     <div className="flex gap-2">
       {Options.map((option, index) => {

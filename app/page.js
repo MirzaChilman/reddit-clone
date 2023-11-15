@@ -2,6 +2,14 @@ import { CardActions } from "../components/(client)/CardActions";
 import { Post } from "../components/(server)/Post";
 import { LoadMore } from "@/components/(client)/LoadMore";
 import { fetchPosts } from "./actions/fetchPosts";
+
+export async function generateMetadata({ searchParams }) {
+  return {
+    title: `99.co | ${searchParams.type}`,
+    description: "Reddit Clone",
+  };
+}
+
 export default async function Home({ searchParams }) {
   const typeParams = searchParams.type;
   const results = await fetchPosts({ type: typeParams });
