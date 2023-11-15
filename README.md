@@ -11,3 +11,6 @@ Should you need fresh seed you can run `node db/seed.js` to freshly seed your da
 1. On the thread/post page, we can do a parallel routes on the post content and post comment, so that our waterfall and component rendering is better
 2. Adding unit test for better confident to deploy to production
 3. Better separation concern on foldering between client and server
+4. On development, the server stylesheet need bit of tweak, means it will cause a janky UI with no styles on development, but on production all is well
+5. Better caching strategies on the fetch server component
+6. Dockerize component 
