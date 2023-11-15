@@ -7,7 +7,6 @@ import { cookies } from "next/headers";
 import Link from "next/link";
 import { PostHeader } from "./PostHeader";
 import { PostFooter } from "./PostFooter";
-import Head from "next/head";
 
 const layoutClasses = {
   card: "my-3 px-3 py-1 ",
@@ -29,40 +28,27 @@ export const Post = ({
   const cookieStore = cookies();
   const url = `/${subReddit}/comments/${id}/${formattedTitle}`;
   return (
-    <>
-      <Head>
-        <title>{title}</title>
-        <meta name="description" content={content} />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={content} />
-        <meta property="og:type" content="article" />
-        <meta
-          property="og:url"
-          content={`${process.env.NEXT_PUBLIC_SITE_URL}/${url}`}
+    <Card
+      className={clsx(
+        `flex cursor-pointer gap-1 hover:border-primary`,
+        layoutClasses[cookieStore.get("layout")?.value ?? "card"]
+      )}
+    >
+      <VotesAction id={id} votes={votes} />
+      <section>
+        <PostHeader
+          subReddit={subReddit}
+          author={author}
+          createdAt={createdAt}
         />
-      </Head>
-      <Card
-        className={clsx(
-          `flex cursor-pointer gap-1 hover:border-primary`,
-          layoutClasses[cookieStore.get("layout")?.value ?? "card"]
-        )}
-      >
-        <VotesAction id={id} votes={votes} />
-        <section>
-          <PostHeader
-            subReddit={subReddit}
-            author={author}
-            createdAt={createdAt}
-          />
 
-          <Link href={url}>
-            <CardTitle>{title}</CardTitle>
-            <CardContent>{content}</CardContent>
-          </Link>
+        <Link href={url}>
+          <CardTitle>{title}</CardTitle>
+          <CardContent>{content}</CardContent>
+        </Link>
 
-          <PostFooter totalCommentsAndReplies={totalCommentsAndReplies} />
-        </section>
-      </Card>
-    </>
+        <PostFooter totalCommentsAndReplies={totalCommentsAndReplies} />
+      </section>
+    </Card>
   );
 };

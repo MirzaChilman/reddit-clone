@@ -1,7 +1,6 @@
 "use client";
 import { ArrowBigUp, ArrowBigDown } from "lucide-react";
 import { patchPost } from "@/app/actions/patchPost";
-import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 
 export const VotesAction = ({ id, votes }) => {
