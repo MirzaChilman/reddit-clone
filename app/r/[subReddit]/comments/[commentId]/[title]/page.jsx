@@ -1,6 +1,5 @@
 import { fetchPost } from "@/app/actions/fetchPost";
 import CommentWithReplies from "@/components/(server)/Comment/WithReplies";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -8,11 +7,9 @@ import {
   CardSmall,
   CardTitle,
 } from "@/components/ui/card";
-import { Textarea } from "@/components/ui/textarea";
 import { displayDate } from "@/helpers/displayDate";
 import { MessageSquare, Forward } from "lucide-react";
 import { VotesAction } from "../../../../../../components/(client)/Votes/Votes";
-import Head from "next/head";
 import { PostEvents } from "./components/(client)/PostEvents";
 
 export async function generateMetadata({ params }) {
@@ -42,13 +39,6 @@ const SubRedditCommentsPage = async ({ params }) => {
   } = res.data;
   return (
     <>
-      <Head>
-        <title>{title}</title>
-        <meta name="description" content={content} />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={content} />
-        <meta property="og:type" content="article" />
-      </Head>
       <Card className="mx-4 my-5 flex gap-1 px-3 py-1 ">
         <VotesAction id={postId} votes={votes} />
         <section>
