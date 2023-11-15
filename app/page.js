@@ -2,7 +2,6 @@ import { CardActions } from "../components/(client)/CardActions";
 import { Post } from "../components/(server)/Post";
 import { LoadMore } from "@/components/(client)/LoadMore";
 import { fetchPosts } from "./actions/fetchPosts";
-
 export default async function Home({ searchParams }) {
   const typeParams = searchParams.type;
   const results = await fetchPosts({ type: typeParams });

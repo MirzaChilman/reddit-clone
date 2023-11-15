@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/(client)/ThemeProvider";
 import { Toaster } from "@/components/ui/toaster";
 import ReactQueryProviders from "./providers/ReactQueryProviders";
 import { ClientCookiesProvider } from "./providers/CookiesProvider";
+import { JotaiProviders } from "./providers/JotaiProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -19,11 +20,17 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <ReactQueryProviders>
           <ClientCookiesProvider value={cookies().getAll()}>
-            <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-              <Navbar />
-              {children}
-              <Toaster />
-            </ThemeProvider>
+            <JotaiProviders>
+              <ThemeProvider
+                attribute="class"
+                defaultTheme="light"
+                enableSystem
+              >
+                <Navbar />
+                {children}
+                <Toaster />
+              </ThemeProvider>
+            </JotaiProviders>
           </ClientCookiesProvider>
         </ReactQueryProviders>
       </body>
