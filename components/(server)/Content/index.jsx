@@ -16,7 +16,6 @@ export const ContentIndex = ({
   votes,
   subReddit,
   createdAt,
-  comments,
   author,
   content,
   id,

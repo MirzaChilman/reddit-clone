@@ -3,8 +3,9 @@ import { ContentIndex } from "../components/(server)/Content";
 import { LoadMore } from "@/components/(client)/LoadMore";
 import { fetchPosts } from "./actions/fetchPosts";
 
-export default async function Home() {
-  const results = await fetchPosts();
+export default async function Home({ searchParams }) {
+  const typeParams = searchParams.type;
+  const results = await fetchPosts({ type: typeParams });
   return (
     <main className="p-5">
       <CardFiltering />
@@ -14,7 +15,6 @@ export default async function Home() {
           votes,
           subreddit,
           createdAt,
-          comments,
           author,
           content,
           id,
@@ -28,7 +28,6 @@ export default async function Home() {
             votes={votes}
             subReddit={subreddit}
             createdAt={createdAt}
-            comments={comments}
             author={author}
             content={content}
             totalCommentsAndReplies={totalCommentsAndReplies}

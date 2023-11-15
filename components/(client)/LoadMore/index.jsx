@@ -3,10 +3,12 @@ import { fetchPosts } from "@/app/actions/fetchPosts";
 import { ContentIndex } from "@/components/(server)/Content";
 import { Spinner } from "@/components/(server)/Spinner";
 import { useToast } from "@/components/ui/use-toast";
+import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 
 export const LoadMore = () => {
+  const searchParams = useSearchParams();
   const [posts, setPosts] = useState([]);
   const { toast } = useToast();
   const [pagesLoaded, setPagesLoaded] = useState(0);
@@ -19,7 +21,11 @@ export const LoadMore = () => {
   const loadMorePosts = useCallback(async () => {
     const nextPage = pagesLoaded + 1;
     try {
-      const newPosts = (await fetchPosts({ page: nextPage })) ?? [];
+      const newPosts =
+        (await fetchPosts({
+          page: nextPage,
+          type: searchParams.get("type") ?? "best",
+        })) ?? [];
       if (newPosts.data.length === 0) {
         setAllPostsLoaded(true);
         return;

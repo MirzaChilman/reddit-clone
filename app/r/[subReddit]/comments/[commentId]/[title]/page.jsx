@@ -54,7 +54,7 @@ const SubRedditCommentsPage = async ({ params }) => {
           <div className="flex gap-3 text-sm">
             <div className="flex cursor-pointer items-center gap-1 rounded-sm p-1 hover:bg-secondary">
               <MessageSquare size={18} />
-              <p>{totalCommentsAndReplies}</p>
+              <p>{totalCommentsAndReplies ?? 0}</p>
             </div>
             <div className="flex cursor-pointer items-center gap-1 rounded-sm p-1 hover:bg-secondary">
               <Forward size={18} />

@@ -5,11 +5,11 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
 import { RocketIcon, FlameIcon, BadgePlus, SunriseIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const Options = [
   { label: "Best", value: "best", icon: <RocketIcon /> },
@@ -19,11 +19,13 @@ const Options = [
 ];
 
 export const CardFiltering = () => {
+  const router = useRouter();
   return (
     <Tabs
       defaultValue="best"
       onValueChange={(value) => {
-        console.log(value);
+        router.push(`?type=${value}`);
+        router.refresh();
       }}
     >
       <TabsList className="w-full justify-between px-2 py-7 ">
