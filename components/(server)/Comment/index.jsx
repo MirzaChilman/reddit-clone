@@ -1,5 +1,6 @@
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Card } from "@/components/ui/card";
+import { displayDate } from "@/helpers/displayDate";
 import { ArrowBigUp, ArrowBigDown, MessageSquare } from "lucide-react";
 
 /**
@@ -14,31 +15,23 @@ import { ArrowBigUp, ArrowBigDown, MessageSquare } from "lucide-react";
  * @param {Function} props.onShare - Function to call when the share button is clicked.
  * @param {Function} props.onReport - Function to call when the report button is clicked.
  */
-export const Comment = ({
-  username,
-  time,
-  content,
-  upvotes,
-  downvotes,
-  onReply,
-  onShare,
-  onReport,
-}) => {
+export const Comment = (props) => {
+  const { author, content, createdAt, votes } = props;
   return (
     <section className="card flex gap-2 px-1 py-2">
       <aside>
         <Avatar className="h-8 w-8">
           <AvatarImage src="https://github.com/shasdcn.png" alt="@shadcn" />
           <AvatarFallback>
-            {username[0]}
-            {username[1]}
+            {author[0]}
+            {author[1]}
           </AvatarFallback>
         </Avatar>
       </aside>
       <Card className="flex-1 p-2">
         <header>
           <p>
-            {username} - <span className="text-sm">{time}</span>
+            {author} - <span className="text-sm">{displayDate(createdAt)}</span>
           </p>
         </header>
         <article>
@@ -47,7 +40,7 @@ export const Comment = ({
         <footer className="flex gap-1">
           <div className="flex items-center gap-1">
             <ArrowBigUp size={24} className="hover:bg-secondary" />
-            <small>{upvotes - downvotes}</small>
+            <small>{votes}</small>
             <ArrowBigDown size={24} className="hover:bg-secondary" />
           </div>
 

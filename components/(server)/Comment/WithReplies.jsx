@@ -2,6 +2,7 @@ import React from "react";
 import { Comment } from "@/components/(server)/Comment";
 
 const CommentWithReplies = ({ comment }) => {
+  console.log({ comment });
   return (
     <div key={comment.id}>
       <Comment {...comment} />

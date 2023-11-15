@@ -61,15 +61,16 @@ function generateMockComments(users, depth = 0) {
     return comments;
   }
 
-  const count = Math.floor(Math.random() * 10); // Generate up to 10 comments
+  const count = Math.min(Math.floor(Math.random() * 10), 5); // Generate up to 5 comments
 
   for (let i = 1; i <= count; i++) {
     const user = users[Math.floor(Math.random() * users.length)];
-
+    const votes = Math.floor(Math.random() * 199) - 99;
     const comment = {
       id: i,
       content: faker.lorem.sentence(),
       author: user.username,
+      votes,
       createdAt: getRandomDate(new Date(2020, 0, 1), new Date()),
       replies: generateMockComments(users, depth + 1), // Generate nested comments
     };
@@ -78,6 +79,15 @@ function generateMockComments(users, depth = 0) {
   }
 
   return comments;
+}
+
+// Helper function to count the number of comments and their replies
+function countCommentsAndReplies(comments) {
+  let count = comments.length;
+  comments.forEach((comment) => {
+    count += countCommentsAndReplies(comment.replies);
+  });
+  return count;
 }
 
 // Generate mock posts data
@@ -93,7 +103,10 @@ function generateMockPosts(users, subreddits, count) {
       users,
       Math.floor(Math.random() * 10)
     ); // Generate up to 10 comments per post
-    const votes = Math.floor(Math.random() * 199) - 99; // Generate a number between -500 and 500 for votes
+    const votes = Math.floor(Math.random() * 199) - 99; // Generate a number between -99 and 99 for votes
+
+    // Calculate the total number of comments and replies in the post
+    const totalCommentsAndReplies = countCommentsAndReplies(comments);
 
     const post = {
       id: i,
@@ -104,6 +117,7 @@ function generateMockPosts(users, subreddits, count) {
       type: type,
       comments: comments,
       votes: votes,
+      totalCommentsAndReplies: totalCommentsAndReplies,
       createdAt: getRandomDate(new Date(2020, 0, 1), new Date()),
     };
 
