@@ -10,6 +10,8 @@ import {
 } from "@/components/ui/select";
 import { RocketIcon, FlameIcon, BadgePlus, SunriseIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { setLayout } from "@/app/actions/setLayout";
+import { useCookies } from "next-client-cookies";
 
 const Options = [
   { label: "Best", value: "best", icon: <RocketIcon /> },
@@ -20,6 +22,7 @@ const Options = [
 
 export const CardFiltering = () => {
   const router = useRouter();
+  const cookieStore = useCookies();
   return (
     <Tabs
       defaultValue="best"
@@ -44,7 +47,12 @@ export const CardFiltering = () => {
           })}
         </div>
         <div>
-          <Select>
+          <Select
+            onValueChange={(event) => {
+              setLayout(event);
+            }}
+            defaultValue={cookieStore.get("layout") ?? "card"}
+          >
             <SelectTrigger className="w-[180px] bg-background">
               <SelectValue defaultValue="card" placeholder="Card" />
             </SelectTrigger>

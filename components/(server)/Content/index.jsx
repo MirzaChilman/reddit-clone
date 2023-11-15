@@ -1,4 +1,4 @@
-"use client";
+"use server";
 import { VotesAction } from "@/components/(client)/Votes/Votes";
 import {
   Card,
@@ -9,8 +9,16 @@ import {
 } from "@/components/ui/card";
 import { displayDate } from "@/helpers/displayDate";
 import { formatUrlTitle } from "@/helpers/formatUrlTitle";
+import clsx from "clsx";
 import { MessageSquare, Forward, ArrowBigUp, ArrowBigDown } from "lucide-react";
+import { cookies } from "next/headers";
 import Link from "next/link";
+
+const layoutClasses = {
+  card: "my-3 px-3 py-1 ",
+  classic: "mx-10 my-10",
+  compact: "mx-0 my-0",
+};
 
 export const ContentIndex = ({
   title,
@@ -23,8 +31,14 @@ export const ContentIndex = ({
   totalCommentsAndReplies,
 }) => {
   const formattedTitle = formatUrlTitle(title);
+  const cookieStore = cookies();
   return (
-    <Card className="my-3 flex cursor-pointer gap-1 px-3 py-1 hover:border-primary">
+    <Card
+      className={clsx(
+        `flex cursor-pointer gap-1 hover:border-primary`,
+        layoutClasses[cookieStore.get("layout")?.value ?? "card"]
+      )}
+    >
       <VotesAction id={id} votes={votes} />
       <section>
         <CardSmall>
