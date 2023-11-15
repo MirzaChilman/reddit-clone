@@ -1,5 +1,6 @@
 const { faker } = require("@faker-js/faker");
 const fs = require("fs");
+const { v4 } = require("uuid");
 
 // Generate a random date between `start` and `end`
 function getRandomDate(start, end) {
@@ -14,7 +15,7 @@ function generateMockUsers(count) {
 
   for (let i = 1; i <= count; i++) {
     const user = {
-      id: i,
+      id: v4(),
       username: faker.internet.userName(),
       email: faker.internet.email(),
       createdAt: getRandomDate(new Date(2010, 0, 1), new Date()),
@@ -30,19 +31,19 @@ function generateMockUsers(count) {
 function generateMockSubreddits() {
   const subreddits = [
     {
-      id: 1,
+      id: v4(),
       name: "r/ReactJs",
       description: faker.lorem.sentence(),
       createdAt: getRandomDate(new Date(2010, 0, 1), new Date()),
     },
     {
-      id: 2,
+      id: v4(),
       name: "r/Cats",
       description: faker.lorem.sentence(),
       createdAt: getRandomDate(new Date(2010, 0, 1), new Date()),
     },
     {
-      id: 3,
+      id: v4(),
       name: "r/Memes",
       description: faker.lorem.sentence(),
       createdAt: getRandomDate(new Date(2010, 0, 1), new Date()),
@@ -67,7 +68,7 @@ function generateMockComments(users, depth = 0) {
     const user = users[Math.floor(Math.random() * users.length)];
     const votes = Math.floor(Math.random() * 199) - 99;
     const comment = {
-      id: i,
+      id: v4(),
       content: faker.lorem.sentence(),
       author: user.username,
       votes,
@@ -109,7 +110,7 @@ function generateMockPosts(users, subreddits, count) {
     const totalCommentsAndReplies = countCommentsAndReplies(comments);
 
     const post = {
-      id: i,
+      id: v4(),
       title: faker.lorem.sentence(),
       content: faker.lorem.paragraph(),
       author: user.username,

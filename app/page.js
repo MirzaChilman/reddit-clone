@@ -34,7 +34,6 @@ export default async function Home({ searchParams }) {
           />
         );
       })}
-
       <LoadMore />
       {/* <button onClick={() => setTheme("light")}>light</button> */}
     </main>

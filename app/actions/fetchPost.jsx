@@ -1,6 +1,13 @@
 "use server";
+
 export async function fetchPost({ postId }) {
-  const res = await fetch(`${process.env.BASE_URL}/posts/${postId}`);
-  const data = await res.json();
+  let data = null;
+  try {
+    const res = await fetch(`${process.env.BASE_URL}/posts/${postId}`);
+    data = await res.json();
+  } catch {
+    console.error("Failed Fetch Post");
+  }
+
   return { data };
 }
