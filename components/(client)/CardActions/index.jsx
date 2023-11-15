@@ -13,7 +13,6 @@ export const CardActions = () => {
       defaultValue="best"
       onValueChange={(value) => {
         router.push(`?type=${value}`);
-        router.refresh();
       }}
     >
       <TabsList className="w-full justify-between px-2 py-7 ">
