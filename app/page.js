@@ -1,5 +1,5 @@
-import { CardFiltering } from "../components/(client)/Actions/CardFiltering";
-import { ContentIndex } from "../components/(server)/Content";
+import { CardActions } from "../components/(client)/CardActions";
+import { Post } from "../components/(server)/Post";
 import { LoadMore } from "@/components/(client)/LoadMore";
 import { fetchPosts } from "./actions/fetchPosts";
 
@@ -8,7 +8,7 @@ export default async function Home({ searchParams }) {
   const results = await fetchPosts({ type: typeParams });
   return (
     <main className="p-5">
-      <CardFiltering />
+      <CardActions />
       {results.data?.map((result) => {
         const {
           title,
@@ -21,7 +21,7 @@ export default async function Home({ searchParams }) {
           totalCommentsAndReplies,
         } = result;
         return (
-          <ContentIndex
+          <Post
             key={id}
             id={id}
             title={title}

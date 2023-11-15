@@ -3,20 +3,8 @@ import { Card } from "@/components/ui/card";
 import { displayDate } from "@/helpers/displayDate";
 import { ArrowBigUp, ArrowBigDown, MessageSquare } from "lucide-react";
 
-/**
- * Single comment component
- * @param {Object} props
- * @param {string} props.username - The username of the commenter.
- * @param {string} props.time - The time when the comment was posted.
- * @param {string} props.content - The content of the comment.
- * @param {number} props.upvotes - The number of upvotes the comment has received.
- * @param {number} props.downvotes - The number of downvotes the comment has received.
- * @param {Function} props.onReply - Function to call when the reply button is clicked.
- * @param {Function} props.onShare - Function to call when the share button is clicked.
- * @param {Function} props.onReport - Function to call when the report button is clicked.
- */
 export const Comment = (props) => {
-  const { author, content, createdAt, votes } = props;
+  const { author, content, createdAt } = props;
   return (
     <section className="card flex gap-2 px-1 py-2">
       <aside>

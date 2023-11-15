@@ -20,7 +20,7 @@ const layoutClasses = {
   compact: "mx-0 my-0",
 };
 
-export const ContentIndex = ({
+export const Post = ({
   title,
   votes,
   subReddit,

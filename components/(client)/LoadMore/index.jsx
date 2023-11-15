@@ -1,6 +1,6 @@
 "use client";
 import { fetchPosts } from "@/app/actions/fetchPosts";
-import { ContentIndex } from "@/components/(server)/Content";
+import { Post } from "@/components/(server)/Post";
 import { Spinner } from "@/components/(server)/Spinner";
 import { useToast } from "@/components/ui/use-toast";
 import { useSearchParams } from "next/navigation";
@@ -8,15 +8,15 @@ import { useCallback, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 
 export const LoadMore = () => {
+  const { toast } = useToast();
   const searchParams = useSearchParams();
   const [posts, setPosts] = useState([]);
-  const { toast } = useToast();
+  const [show, setShow] = useState(false);
   const [pagesLoaded, setPagesLoaded] = useState(0);
   const [allPostsLoaded, setAllPostsLoaded] = useState(false);
   const { ref, inView } = useInView({
     threshold: 0,
   });
-  const [show, setShow] = useState(false);
 
   const loadMorePosts = useCallback(async () => {
     const nextPage = pagesLoaded + 1;
@@ -64,7 +64,7 @@ export const LoadMore = () => {
           id,
         } = post;
         return (
-          <ContentIndex
+          <Post
             key={id}
             id={id}
             title={title}
