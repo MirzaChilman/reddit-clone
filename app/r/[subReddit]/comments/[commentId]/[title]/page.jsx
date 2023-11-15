@@ -13,6 +13,7 @@ import { displayDate } from "@/helpers/displayDate";
 import { MessageSquare, Forward } from "lucide-react";
 import { VotesAction } from "../../../../../../components/(client)/Votes/Votes";
 import Head from "next/head";
+import { PostEvents } from "./components/(client)/PostEvents";
 
 export async function generateMetadata({ params }) {
   const postId = params.commentId;
@@ -74,15 +75,7 @@ const SubRedditCommentsPage = async ({ params }) => {
               </div>
             </div>
           </CardFooter>
-          <div className="my-5 text-sm">
-            <p>
-              Comment as <span className="text-blue-600">{author}</span>{" "}
-            </p>
-            <Textarea />
-            <Button size="sm" className="mt-3">
-              Send Comment
-            </Button>
-          </div>
+          <PostEvents author={author} />
 
           {comments.map((comment) => (
             <CommentWithReplies key={comment.id} comment={comment} />
