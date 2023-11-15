@@ -18,6 +18,7 @@ export default async function Home() {
           author,
           content,
           id,
+          totalCommentsAndReplies,
         } = result;
         return (
           <ContentIndex
@@ -30,6 +31,7 @@ export default async function Home() {
             comments={comments}
             author={author}
             content={content}
+            totalCommentsAndReplies={totalCommentsAndReplies}
           />
         );
       })}
