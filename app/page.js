@@ -5,7 +5,7 @@ import { fetchPosts } from "./actions/fetchPosts";
 
 export async function generateMetadata({ searchParams }) {
   return {
-    title: `99.co | ${searchParams.type}`,
+    title: `99.co  ${searchParams?.type ? `| ${searchParams?.type}` : ""}`,
     description: "Reddit Clone",
   };
 }
