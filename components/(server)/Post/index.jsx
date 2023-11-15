@@ -1,54 +1,31 @@
 "use server";
-import { VotesAction } from "@/components/(client)/Votes/Votes";
-import { Card, CardContent, CardTitle } from "@/components/ui/card";
-import { formatUrlTitle } from "@/helpers/formatUrlTitle";
+import { Card } from "@/components/ui/card";
 import clsx from "clsx";
 import { cookies } from "next/headers";
-import Link from "next/link";
-import { PostHeader } from "./PostHeader";
-import { PostFooter } from "./PostFooter";
+
+import { CardPost } from "./CardPost";
+import { CompactPost } from "./CompactPost";
+import { ClassicPost } from "./ClassicPost";
 
 const layoutClasses = {
-  card: "my-3 px-3 py-1 ",
-  classic: "mx-10 my-10",
-  compact: "mx-0 my-0",
+  card: "my-3 px-3 py-1",
+  classic: "p-2 mx-1 my-1 bg-gray-100 rounded-lg shadow-lg",
+  compact: "mx-0 my-0 p-2",
 };
 
-export const Post = ({
-  title,
-  votes,
-  subReddit,
-  createdAt,
-  author,
-  content,
-  id,
-  totalCommentsAndReplies,
-}) => {
-  const formattedTitle = formatUrlTitle(title);
+export const Post = (props) => {
   const cookieStore = cookies();
-  const url = `/${subReddit}/comments/${id}/${formattedTitle}`;
+  const layout = cookieStore.get("layout")?.value ?? "card";
   return (
     <Card
       className={clsx(
         `flex cursor-pointer gap-1 hover:border-primary`,
-        layoutClasses[cookieStore.get("layout")?.value ?? "card"]
+        layoutClasses[layout]
       )}
     >
-      <VotesAction id={id} votes={votes} />
-      <section>
-        <PostHeader
-          subReddit={subReddit}
-          author={author}
-          createdAt={createdAt}
-        />
-
-        <Link href={url}>
-          <CardTitle>{title}</CardTitle>
-          <CardContent>{content}</CardContent>
-        </Link>
-
-        <PostFooter totalCommentsAndReplies={totalCommentsAndReplies} />
-      </section>
+      {layout === "card" && <CardPost {...props} />}
+      {layout === "compact" && <CompactPost {...props} />}
+      {layout === "classic" && <ClassicPost {...props} />}
     </Card>
   );
 };
