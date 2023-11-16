@@ -35,6 +35,7 @@ export const LoadMore = () => {
     } catch {
       toast({
         title: "Something went error load more",
+        variant: "destructive",
       });
     } finally {
       setShow(false);
