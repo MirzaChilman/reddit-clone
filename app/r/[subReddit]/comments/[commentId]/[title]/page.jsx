@@ -11,6 +11,7 @@ import { displayDate } from "@/helpers/displayDate";
 import { MessageSquare, Forward } from "lucide-react";
 import { VotesAction } from "../../../../../../components/(client)/Votes/Votes";
 import { PostEvents } from "./components/(client)/PostEvents";
+import { Suspense } from "react";
 
 export async function generateMetadata({ params }) {
   const postId = params.commentId;
@@ -40,7 +41,9 @@ const SubRedditCommentsPage = async ({ params }) => {
   return (
     <>
       <Card className="mx-4 my-5 flex gap-1 px-3 py-1 ">
-        <VotesAction id={postId} votes={votes} />
+        <Suspense>
+          <VotesAction id={postId} votes={votes} />
+        </Suspense>
         <section>
           <CardSmall>
             <div className="flex gap-1">

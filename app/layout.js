@@ -12,15 +12,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <ReactQueryProviders>
-          <ClientCookiesProvider value={cookies().getAll()}>
-            <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-              <Navbar />
-              {children}
-              <Toaster />
-            </ThemeProvider>
-          </ClientCookiesProvider>
-        </ReactQueryProviders>
+        <ClientCookiesProvider value={cookies().getAll()}>
+          <Navbar />
+          {children}
+          <Toaster />
+        </ClientCookiesProvider>
       </body>
     </html>
   );

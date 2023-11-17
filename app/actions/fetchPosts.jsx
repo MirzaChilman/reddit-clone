@@ -4,7 +4,7 @@ export async function fetchPosts({ type = "best", page = 0 } = {}) {
   try {
     const res = await fetch(
       `${process.env.BASE_URL}/posts?type=${type}&_limit=15&_page=${page}`,
-      { cache: "no-store", next: { tags: ["fetchPosts", String(page)] } }
+      { next: { tags: ["fetchPosts"] }, cache: "no-store" }
     );
     data = await res.json();
   } catch {

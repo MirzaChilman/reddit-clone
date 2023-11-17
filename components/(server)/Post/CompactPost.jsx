@@ -5,6 +5,7 @@ import { formatUrlTitle } from "@/helpers/formatUrlTitle";
 import Link from "next/link";
 import { PostHeader } from "./PostHeader";
 import { PostFooter } from "./PostFooter";
+import { Votes2 } from "@/components/(client)/Votes2";
 
 export const CompactPost = ({
   title,
@@ -20,7 +21,7 @@ export const CompactPost = ({
   const url = `/${subReddit}/comments/${id}/${formattedTitle}`;
   return (
     <>
-      <VotesAction id={id} votes={votes} />
+      <Votes2 id={id} votes={votes} />
       <section>
         <PostHeader
           subReddit={subReddit}

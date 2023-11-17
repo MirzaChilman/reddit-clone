@@ -6,6 +6,7 @@ import { formatUrlTitle } from "@/helpers/formatUrlTitle";
 import Link from "next/link";
 import { PostHeader } from "./PostHeader";
 import { PostFooter } from "./PostFooter";
+import { Votes2 } from "@/components/(client)/Votes2";
 
 const layoutClasses = {
   card: "my-3 px-3 py-1",
@@ -28,7 +29,7 @@ export const ClassicPost = ({
   const url = `/${subReddit}/comments/${id}/${formattedTitle}`;
   return (
     <div>
-      <VotesAction id={id} votes={votes} />
+      <Votes2 id={id} votes={votes} />
       <section>
         <PostHeader
           subReddit={subReddit}
